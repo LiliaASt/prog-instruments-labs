@@ -49,7 +49,7 @@ test_cases = [
     (6, 5, 'Advantage One', 'One', 'player2'),
     (5, 6, 'Advantage Two', 'player1', 'Two'),
 
-    ]
+]
 
 
 def play_game(p1Points, p2Points, p1Name, p2Name):
