@@ -101,7 +101,6 @@ class TennisGameDefactored2:
             P1res = "Love"
             result = P1res + "-" + P2res
 
-
         if (self.p1points>self.p2points and self.p1points < 4):
             if (self.p1points==2):
                 P1res="Thirty"
@@ -146,9 +145,9 @@ class TennisGameDefactored2:
     def P1Score(self):
         self.p1points +=1
 
-
     def P2Score(self):
         self.p2points +=1
+
 
 class TennisGameDefactored3:
     def __init__(self, player1Name, player2Name):
@@ -173,6 +172,7 @@ class TennisGameDefactored3:
                 return "Deuce"
             s = self.p1N if self.p1 > self.p2 else self.p2N
             return "Advantage " + s if ((self.p1-self.p2)*(self.p1-self.p2) == 1) else "Win for " + s
+
 
 # NOTE: You must change this to point at the one of the three examples that you're working on!
 TennisGame = TennisGameDefactored1
