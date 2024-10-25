@@ -33,9 +33,7 @@ class Yahtzee:
             sum += 1
         if (d5 == 1):
             sum += 1
-
         return sum
-
 
     @staticmethod
     def twos( d1,  d2,  d3,  d4,  d5):
@@ -67,7 +65,6 @@ class Yahtzee:
              s += 3
         return s
 
-
     def __init__(self, d1, d2, d3, d4, _5):
         self.dice = [0]*5
         self.dice[0] = d1
@@ -83,7 +80,6 @@ class Yahtzee:
                 sum += 4
         return sum
 
-
     def fives(self):
         s = 0
         i = 0
@@ -91,7 +87,6 @@ class Yahtzee:
             if (self.dice[i] == 5):
                 s = s + 5
         return s
-
 
     def sixes(self):
         sum = 0
@@ -147,7 +142,6 @@ class Yahtzee:
                 return (i+1) * 4
         return 0
 
-
     @staticmethod
     def three_of_a_kind( d1,  d2,  d3,  d4,  d5):
         t = [0]*6
@@ -160,7 +154,6 @@ class Yahtzee:
             if (t[i] == 3):
                 return (i+1) * 3
         return 0
-
 
     @staticmethod
     def small_straight( d1,  d2,  d3,  d4,  d5):
@@ -178,7 +171,6 @@ class Yahtzee:
             return 15
         return 0
 
-
     @staticmethod
     def large_straight( d1,  d2,  d3,  d4,  d5):
         tallies = [0]*6
@@ -194,7 +186,6 @@ class Yahtzee:
             and tallies[5] == 1):
             return 20
         return 0
-
 
     @staticmethod
     def full_house( d1,  d2,  d3,  d4,  d5):
@@ -217,12 +208,10 @@ class Yahtzee:
                 _2 = True
                 _2_at = i+1
 
-
         for i in range(6):
             if (tallies[i] == 3):
                 _3 = True
                 _3_at = i+1
-
 
         if (_2 and _3):
             return _2_at * 2 + _3_at * 3
