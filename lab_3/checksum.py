@@ -1,46 +1,61 @@
 import json
+import csv
+import re
 import hashlib
 from typing import List
+from path import *
 
-"""
-В этом модуле обитают функции, необходимые для автоматизированной проверки результатов ваших трудов.
-"""
+
+def validate_row(row: List[str]) -> bool:
+    return (
+        re.match(VALID_EMAIL_REGEX, row[0]) and
+        re.match(VALID_HEIGHT_REGEX, row[1]) and
+        re.match(VALID_SNILS_REGEX, row[2]) and
+        re.match(VALID_PASSPORT_REGEX, row[3]) and
+        re.match(VALID_OCCUPATION_REGEX, row[4]) and
+        re.match(VALID_LONGITUDE_REGEX, row[5]) and
+        re.match(VALID_HEX_COLOR_REGEX, row[6]) and
+        re.match(VALID_ISSN_REGEX, row[7]) and
+        re.match(VALID_LOCALE_CODE_REGEX, row[8]) and
+        re.match(VALID_TIME_REGEX, row[9])
+    )
+
+
+def process_csv(path: str) -> List[int]:
+    invalid_rows: List[int] = []
+    with open(path, newline='', encoding='utf-16') as csvfile:
+        reader = csv.DictReader(csvfile, delimiter=';')
+        next(reader)
+
+        for row_number, row in enumerate(reader, start=1):
+            if not validate_row(list(row.values())):
+                invalid_rows.append(row_number)
+    return invalid_rows
 
 
 def calculate_checksum(row_numbers: List[int]) -> str:
-    """
-    Вычисляет md5 хеш от списка целочисленных значений.
-
-    ВНИМАНИЕ, ВАЖНО! Чтобы сумма получилась корректной, считать, что первая строка с данными csv-файла имеет номер 0
-    Другими словами: В исходном csv 1я строка - заголовки столбцов, 2я и остальные - данные.
-    Соответственно, считаем что у 2 строки файла номер 0, у 3й - номер 1 и так далее.
-
-    Надеюсь, я расписал это максимально подробно.
-    Хотя что-то мне подсказывает, что обязательно найдется человек, у которого с этим возникнут проблемы.
-    Которому я отвечу, что все написано в докстринге ¯\_(ツ)_/¯
-
-    :param row_numbers: список целочисленных номеров строк csv-файла, на которых были найдены ошибки валидации
-    :return: md5 хеш для проверки через github action
-    """
     row_numbers.sort()
     return hashlib.md5(json.dumps(row_numbers).encode('utf-8')).hexdigest()
 
 
-def serialize_result(variant: int, checksum: str) -> None:
-    """
-    Метод для сериализации результатов лабораторной пишите сами.
-    Вам нужно заполнить данными - номером варианта и контрольной суммой - файл, лежащий в папке с лабораторной.
-    Файл называется, очевидно, result.json.
+def serialize_result(variant: int, checksum: str, path: str) -> None:
+    result_data = {
+        "variant": variant,
+        "checksum": checksum
+    }
 
-    ВНИМАНИЕ, ВАЖНО! На json натравлен github action, который проверяет корректность выполнения лабораторной.
-    Так что не перемещайте, не переименовывайте и не изменяйте его структуру, если планируете успешно сдать лабу.
+    with open(path, 'w', encoding='utf-8') as json_file:
+        json.dump(result_data, json_file, ensure_ascii=False, indent=4)
 
-    :param variant: номер вашего варианта
-    :param checksum: контрольная сумма, вычисленная через calculate_checksum()
-    """
-    pass
+
+def main():
+    # Вычисляем контрольную сумму
+    checksum = calculate_checksum(process_csv(CVS_PATH))
+    print(checksum)
+
+    # Сериализуем результат в JSON файл
+    serialize_result(variant=3, checksum=checksum, path=RESULT_PATH)
 
 
 if __name__ == "__main__":
-    print(calculate_checksum([1, 2, 3]))
-    print(calculate_checksum([3, 2, 1]))
+    main()
