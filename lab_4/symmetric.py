@@ -4,14 +4,21 @@ from cryptography.hazmat.primitives.ciphers.algorithms import TripleDES
 from cryptography.hazmat.backends import default_backend
 from cryptography.hazmat.primitives import padding
 from file import File
+import logging
+
+logging.basicConfig(filename='lab_4\example_log.txt', level=logging.DEBUG,
+                    format='%(asctime)s - %(levelname)s - %(filename)s - %(lineno)s - %(message)s')
 
 
 class Symmetric:
     @staticmethod
     def generate_symmetric_key(length: int) -> bytes:
         if length not in [64, 128, 192]:
+            logging.error(
+                'The key length is not equal to 64, 128 or 192 bits')
             raise ValueError("Длина ключа должна быть 64, 128 или 192 бита:")
         key = os.urandom(length // 8)
+        logging.info('Symmetric key generation is complete')
         return key
 
     @staticmethod
@@ -27,6 +34,7 @@ class Symmetric:
         encryptor_text = iv + \
             encryptor.update(padded_text) + encryptor.finalize()
         File.write_bytes(encrypted_text, encryptor_text)
+        logging.info('Data encryption with a symmetric key is completed')
         return encryptor_text
 
     @staticmethod
@@ -44,4 +52,5 @@ class Symmetric:
         unpadded_text = unpadder.update(
             decrypted_padded_text) + unpadder.finalize()
         File.write_bytes(decrypted_text, unpadded_text)
+        logging.info('Data decryption with a symmetric key is completed')
         return unpadded_text

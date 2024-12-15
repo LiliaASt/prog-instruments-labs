@@ -2,6 +2,10 @@ from cryptography.hazmat.primitives.asymmetric import rsa
 from cryptography.hazmat.primitives.asymmetric import padding
 from cryptography.hazmat.primitives import hashes
 from file import File
+import logging
+
+logging.basicConfig(filename='lab_4\example_log.txt', level=logging.DEBUG,
+                    format='%(asctime)s - %(levelname)s - %(filename)s - %(lineno)s - %(message)s')
 
 
 class Asymmetric:
@@ -12,6 +16,8 @@ class Asymmetric:
             key_size=2048,
         )
         public_key = private_key.public_key()
+        logging.info(
+            'Asymmetric keys generation is completed (private and public)')
         return private_key, public_key
 
     @staticmethod
@@ -25,6 +31,8 @@ class Asymmetric:
                          algorithm=hashes.SHA256(),
                          label=None))
         File.write_bytes(encrypted_path, encrypted_key)
+        logging.info(
+            'Encryption of the symmetric key with the public key is completed')
         return encrypted_key
 
     @staticmethod
@@ -38,4 +46,6 @@ class Asymmetric:
                          algorithm=hashes.SHA256(),
                          label=None))
         File.write_bytes(decrypted_path, decrypted_key)
+        logging.info(
+            'Decryption of the symmetric key with the private key is completed')
         return decrypted_key
