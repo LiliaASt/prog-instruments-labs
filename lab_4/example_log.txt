@@ -1,0 +1,40 @@
+2024-12-16 00:00:10,122 - INFO - main.py - 47 - Program start
+2024-12-16 00:00:12,560 - WARNING - main.py - 74 - The user has selected a value, that does not correspond to any action: 6
+2024-12-16 00:00:15,481 - INFO - main.py - 59 - The user has selected generate keys
+2024-12-16 00:00:19,674 - INFO - main.py - 62 - The user entered the key length: 158
+2024-12-16 00:00:19,742 - INFO - asymmetric.py - 19 - Asymmetric keys generation is completed (private and public)
+2024-12-16 00:00:19,743 - INFO - file.py - 20 - Writing the asymmetric keys to the file was successful
+2024-12-16 00:00:19,743 - ERROR - symmetric.py - 17 - The key length is not equal to 64, 128 or 192 bits
+2024-12-16 00:00:22,536 - INFO - main.py - 47 - Program start
+2024-12-16 00:00:24,705 - INFO - main.py - 59 - The user has selected generate keys
+2024-12-16 00:00:29,224 - INFO - main.py - 62 - The user entered the key length: 192
+2024-12-16 00:00:29,287 - INFO - asymmetric.py - 19 - Asymmetric keys generation is completed (private and public)
+2024-12-16 00:00:29,288 - INFO - file.py - 20 - Writing the asymmetric keys to the file was successful
+2024-12-16 00:00:29,288 - INFO - symmetric.py - 21 - Symmetric key generation is complete
+2024-12-16 00:00:29,288 - INFO - file.py - 50 - Writing the key to the file was successful
+2024-12-16 00:00:29,288 - INFO - file.py - 25 - Reading the public asymmetric key from the file was successful
+2024-12-16 00:00:29,289 - INFO - file.py - 55 - Reading key from the file was successful
+2024-12-16 00:00:29,289 - INFO - file.py - 50 - Writing the key to the file was successful
+2024-12-16 00:00:29,289 - INFO - asymmetric.py - 34 - Encryption of the symmetric key with the public key is completed
+2024-12-16 00:00:29,290 - INFO - main.py - 24 - Key generation is complete
+2024-12-16 00:00:30,098 - INFO - main.py - 65 - The user has selected encrypt text
+2024-12-16 00:00:30,098 - INFO - file.py - 33 - Reading the private asymmetric key from the file was successful
+2024-12-16 00:00:30,146 - INFO - file.py - 55 - Reading key from the file was successful
+2024-12-16 00:00:30,147 - INFO - file.py - 50 - Writing the key to the file was successful
+2024-12-16 00:00:30,147 - INFO - asymmetric.py - 49 - Decryption of the symmetric key with the private key is completed
+2024-12-16 00:00:30,147 - INFO - file.py - 55 - Reading key from the file was successful
+2024-12-16 00:00:30,148 - INFO - file.py - 55 - Reading key from the file was successful
+2024-12-16 00:00:30,151 - INFO - file.py - 50 - Writing the key to the file was successful
+2024-12-16 00:00:30,151 - INFO - symmetric.py - 37 - Data encryption with a symmetric key is completed
+2024-12-16 00:00:30,152 - INFO - main.py - 33 - Data encryption is complete
+2024-12-16 00:00:30,978 - INFO - main.py - 68 - The user has selected decrypt text
+2024-12-16 00:00:30,980 - INFO - file.py - 33 - Reading the private asymmetric key from the file was successful
+2024-12-16 00:00:31,039 - INFO - file.py - 55 - Reading key from the file was successful
+2024-12-16 00:00:31,041 - INFO - file.py - 50 - Writing the key to the file was successful
+2024-12-16 00:00:31,041 - INFO - asymmetric.py - 49 - Decryption of the symmetric key with the private key is completed
+2024-12-16 00:00:31,042 - INFO - file.py - 55 - Reading key from the file was successful
+2024-12-16 00:00:31,042 - INFO - file.py - 55 - Reading key from the file was successful
+2024-12-16 00:00:31,043 - INFO - file.py - 50 - Writing the key to the file was successful
+2024-12-16 00:00:31,043 - INFO - symmetric.py - 55 - Data decryption with a symmetric key is completed
+2024-12-16 00:00:31,043 - INFO - main.py - 42 - Data decryption is complete
+2024-12-16 00:00:31,746 - INFO - main.py - 71 - The user has selected exit
