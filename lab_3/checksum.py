@@ -52,6 +52,7 @@ def main():
     # Вычисляем контрольную сумму
     checksum = calculate_checksum(process_csv(CVS_PATH))
     print(checksum)
+    print(len(process_csv(CVS_PATH)))
 
     # Сериализуем результат в JSON файл
     serialize_result(variant=3, checksum=checksum, path=RESULT_PATH)
